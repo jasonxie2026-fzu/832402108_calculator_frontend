@@ -3,7 +3,7 @@ const keys = document.getElementById('keys');
 const historyList = document.getElementById('history');
 const errorBox = document.getElementById('error');
 const statusBox = document.getElementById('status');
-const API_BASE = 'https://calculator-backend-nnrz.onrender.com';
+const API_BASE = 'https://calculator-backend-1-ua8m.onrender.com';
 let expression = '';
 
 function show(value) { display.textContent = value || '0'; }
