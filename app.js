@@ -3,6 +3,7 @@ const keys = document.getElementById('keys');
 const historyList = document.getElementById('history');
 const errorBox = document.getElementById('error');
 const statusBox = document.getElementById('status');
+const API_BASE = 'https://calculator-backend-nnrz.onrender.com';
 let expression = '';
 
 function show(value) { display.textContent = value || '0'; }
@@ -21,7 +22,7 @@ async function calculate() {
   if (!expression.trim()) return;
   setError();
   try {
-    const response = await fetch('/api/calculate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ expression }) });
+    const response = await fetch(`${API_BASE}/api/calculate`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ expression }) });
     const body = await response.json();
     if (!response.ok) throw new Error(body.message || '计算失败');
     expression = String(body.result);
@@ -36,7 +37,7 @@ async function calculate() {
 
 async function loadHistory() {
   try {
-    const response = await fetch('/api/history');
+    const response = await fetch(`${API_BASE}/api/history`);
     const body = await response.json();
     if (!response.ok) throw new Error(body.message || '历史记录读取失败');
     statusBox.textContent = 'API ready';
@@ -71,12 +72,12 @@ keys.addEventListener('click', (event) => {
 
 historyList.addEventListener('click', async (event) => {
   const button = event.target.closest('.delete-record'); if (!button) return;
-  await fetch(`/api/history/${button.dataset.id}`, { method: 'DELETE' });
+  await fetch(`${API_BASE}/api/history/${button.dataset.id}`, { method: 'DELETE' });
   await loadHistory();
 });
 
 document.getElementById('clearHistory').addEventListener('click', async () => {
-  await fetch('/api/history', { method: 'DELETE' });
+  await fetch(`${API_BASE}/api/history`, { method: 'DELETE' });
   await loadHistory();
 });
 
