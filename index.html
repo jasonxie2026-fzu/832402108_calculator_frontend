@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="layout">
+    <section class="calculator-card">
+      <div class="topline">
+        <h1>Calculator</h1>
+        <span class="status" id="status">API ready</span>
+      </div>
+      <p class="hint">输入表达式后按等号，例如：1 + 2 * 3</p>
+      <div class="display" id="display" aria-live="polite">0</div>
+      <div class="keys" id="keys">
+        <button class="soft" data-action="clear">AC</button>
+        <button class="soft" data-action="backspace">⌫</button>
+        <button class="operator" data-value="%">%</button>
+        <button class="operator" data-value="/">÷</button>
+        <button data-value="7">7</button><button data-value="8">8</button><button data-value="9">9</button><button class="operator" data-value="*">×</button>
+        <button data-value="4">4</button><button data-value="5">5</button><button data-value="6">6</button><button class="operator" data-value="-">−</button>
+        <button data-value="1">1</button><button data-value="2">2</button><button data-value="3">3</button><button class="operator" data-value="+">+</button>
+        <button class="zero" data-value="0">0</button><button data-value=".">.</button><button class="equals" data-action="equals">=</button>
+      </div>
+      <div class="error" id="error" role="alert"></div>
+    </section>
+
+    <section class="history-card">
+      <div class="history-head"><h2>History</h2><button class="clear-history" id="clearHistory">清空</button></div>
+      <div id="history" class="history-list"><p class="empty">暂无记录</p></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
